@@ -17,7 +17,7 @@ header {
     font-weight: bold;
 }
 
-/* 📋 Form Container */
+/* 📋 Form Container (First Page) */
 .form-container {
     width: 90%;
     max-width: 400px;
@@ -28,9 +28,24 @@ header {
     box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* 📥 Input Fields */
+/* 💬 Chat Container (Second Page) */
+.chat-container {
+    width: 90%;
+    max-width: 500px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    overflow: hidden;
+}
+
+/* 📥 Input Fields (Applies to Both Pages) */
 input {
-    width: calc(100% - 24px); /* ✅ Ensures inputs are the same width as the button */
+    width: calc(100% - 24px); /* ✅ Ensures inputs match button width */
     padding: 14px;
     margin: 10px 0;
     border: 1px solid #ddd;
@@ -46,9 +61,9 @@ input:focus {
     box-shadow: 0px 0px 5px rgba(255, 152, 0, 0.5);
 }
 
-/* 🔘 Submit Button */
+/* 🔘 Buttons (Submit and Ask) */
 button {
-    width: calc(100% - 24px); /* ✅ Ensures button is the same width as inputs */
+    width: calc(100% - 24px); /* ✅ Same width as inputs */
     padding: 14px;
     margin-top: 10px;
     background-color: #ff9800;
@@ -72,9 +87,107 @@ button:hover {
     margin-top: 10px;
 }
 
+/* 📥 Chat Box */
+#chat-box {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    scrollbar-width: thin;
+    max-height: 400px; /* ✅ Ensures chat messages fit properly */
+}
+
+/* 📤 Chat Input Section (Second Page) */
+.input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px;
+    background: white;
+    border-top: 1px solid #ddd;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ✅ Force Chat Input Field & Button to Be the Same Size */
+#user-input, #send-btn {
+    width: calc(100% - 24px);
+    padding: 14px;
+    margin-top: 8px;
+    border-radius: 12px;
+    font-size: 16px;
+    outline: none;
+    box-sizing: border-box; /* ✅ Prevents overflow */
+}
+
+#user-input {
+    border: 1px solid #ddd;
+    background: #f9f9f9;
+}
+
+#send-btn {
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+#send-btn:hover {
+    background-color: #e68900;
+}
+
+/* 👤 User Messages */
+.user-message {
+    background-color: #ffcc80;
+    color: #333;
+    padding: 12px;
+    border-radius: 15px;
+    max-width: 75%;
+    margin-bottom: 10px;
+    align-self: flex-end;
+    font-size: 16px;
+    text-align: right;
+}
+
+/* 🤖 Bot Messages */
+.bot-message {
+    background-color: #ffeb99;
+    color: #333;
+    padding: 12px;
+    border-radius: 15px;
+    max-width: 75%;
+    margin-bottom: 10px;
+    align-self: flex-start;
+    font-size: 16px;
+    text-align: left;
+}
+
+/* 🔄 Smooth Fade-In Effect */
+.user-message, .bot-message {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* 📱 Mobile Responsive */
 @media (max-width: 600px) {
-    .form-container {
+    .form-container, .chat-container {
         width: 95%;
     }
 
@@ -86,4 +199,10 @@ button:hover {
         font-size: 16px;
         padding: 12px;
     }
+}
+
+/* 🏦 AdSense Placeholder */
+.adsense-placeholder {
+    margin-top: 20px;
+    text-align: center;
 }
