@@ -14,6 +14,14 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = "index.html"; // Redirect back
     }
 
+    // Function to encrypt API key before sending
+    async function encryptAPIKey(apiKey) {
+        const encoder = new TextEncoder();
+        const data = encoder.encode(apiKey);
+        const key = await crypto.subtle.digest('SHA-256', data);
+        return btoa(String.fromCharCode(...new Uint8Array(key))); // Base64 encoding
+    }
+
     sendBtn.addEventListener("click", async () => {
         const userText = userInput.value.trim();
         if (!userText) return;
@@ -33,27 +41,43 @@ document.addEventListener("DOMContentLoaded", () => {
         loadingMessage.textContent = "Thinking...";
         chatBox.appendChild(loadingMessage);
 
+        // Encrypt API Key
+        const encryptedAPIKey = await encryptAPIKey(userAPIKey);
+
         // API Call
-        const response = await fetch("https://astrology-bot-worker.mahima-gandhi15.workers.dev/", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                query: `Use astrology to answer my question. My astrological details are: 
-                       DOB: ${userDOB}, Time: ${userTOB}, Place: ${userPOB}. 
-                       My question is: ${userText}`,
-                apiKey: userAPIKey
-            })
-        });
+        try {
+            const response = await fetch("https://astrology-bot-worker.mahima-gandhi15.workers.dev/", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    query: `Use astrology to answer my question. My astrological details are: 
+                           DOB: ${userDOB}, Time: ${userTOB}, Place: ${userPOB}. 
+                           My question is: ${userText}`,
+                    encryptedApiKey: encryptedAPIKey
+                })
+            });
 
-        const responseData = await response.json();
-        loadingMessage.remove();
+            const responseData = await response.json();
+            loadingMessage.remove();
 
-        // Append bot response
-        const botMessage = document.createElement("div");
-        botMessage.classList.add("bot-message");
-        botMessage.textContent = responseData.choices[0].message.content;
-        chatBox.appendChild(botMessage);
+            // Append bot response
+            const botMessage = document.createElement("div");
+            botMessage.classList.add("bot-message");
+            botMessage.textContent = responseData.choices ? responseData.choices[0].message.content : "Error: No response received.";
+            chatBox.appendChild(botMessage);
 
+        } catch (error) {
+            loadingMessage.remove();
+
+            // Show error message
+            const errorMessage = document.createElement("div");
+            errorMessage.classList.add("bot-message");
+            errorMessage.textContent = "Error: Unable to fetch response. Please try again.";
+            chatBox.appendChild(errorMessage);
+            console.error("API Request Failed:", error);
+        }
+
+        // Auto-scroll to latest message
         chatBox.scrollTop = chatBox.scrollHeight;
     });
 });
