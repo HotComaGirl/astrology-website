@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unlimited Free Astrology</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Unlimited Free Astrology</h1>
+    </header>
+
+    <div class="form-container">
+        <h2>Enter Your Astrological Details</h2>
+        <input type="date" id="dob" placeholder="Date of Birth">
+        <input type="time" id="tob" placeholder="Time of Birth">
+        <input type="text" id="pob" placeholder="Place of Birth">
+        <input type="password" id="api-key" placeholder="OpenAI API Key">
+        <button id="submit-btn">Proceed</button>
+        <p id="error-msg"></p>
+    </div>
+
+    <script>
+        document.getElementById("submit-btn").addEventListener("click", () => {
+            const dob = document.getElementById("dob").value;
+            const tob = document.getElementById("tob").value;
+            const pob = document.getElementById("pob").value;
+            const apiKey = document.getElementById("api-key").value;
+
+            if (!dob || !tob || !pob || !apiKey) {
+                document.getElementById("error-msg").textContent = "All fields are required!";
+                return;
+            }
+
+            // Store data in sessionStorage
+            sessionStorage.setItem("dob", dob);
+            sessionStorage.setItem("tob", tob);
+            sessionStorage.setItem("pob", pob);
+            sessionStorage.setItem("apiKey", apiKey);
+
+            window.location.href = "chat.html"; // Navigate to next page
+        });
+    </script>
+</body>
+</html>
