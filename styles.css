@@ -36,11 +36,11 @@ header {
 /* 📥 Input Fields */
 input {
     width: 100%;
-    padding: 12px;
+    padding: 14px;
     margin: 8px 0;
     border: 1px solid #ddd;
     border-radius: 8px;
-    font-size: 16px;
+    font-size: 18px;
     outline: none;
     transition: 0.2s;
 }
@@ -53,11 +53,11 @@ input:focus {
 /* 🔘 Button */
 button {
     width: 100%;
-    padding: 12px;
+    padding: 14px;
     margin-top: 10px;
     background-color: #ff9800;
     color: white;
-    font-size: 16px;
+    font-size: 18px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -72,7 +72,7 @@ button:hover {
 /* ⚠️ Error Message */
 #error-msg {
     color: red;
-    font-size: 14px;
+    font-size: 16px;
     margin-top: 10px;
 }
 
@@ -104,6 +104,7 @@ button:hover {
 /* 📤 Input Section */
 .input-container {
     display: flex;
+    flex-direction: column;
     padding: 12px;
     background: white;
     border-top: 1px solid #ddd;
@@ -117,23 +118,26 @@ button:hover {
 }
 
 #user-input {
-    flex: 1;
-    padding: 12px;
+    width: 100%;
+    padding: 16px;
     border: 1px solid #ddd;
-    border-radius: 20px;
-    font-size: 16px;
+    border-radius: 12px;
+    font-size: 18px;
     outline: none;
     background: #f9f9f9;
+    text-align: left;
 }
 
 #send-btn {
-    margin-left: 10px;
+    width: 100%;
+    margin-top: 10px;
     background-color: #ff9800;
     color: white;
     border: none;
-    padding: 12px 20px;
-    border-radius: 20px;
+    padding: 14px;
+    border-radius: 12px;
     cursor: pointer;
+    font-size: 18px;
     font-weight: bold;
     transition: 0.3s;
 }
@@ -151,7 +155,7 @@ button:hover {
     max-width: 75%;
     margin-bottom: 10px;
     align-self: flex-end;
-    font-size: 14px;
+    font-size: 16px;
     text-align: right;
 }
 
@@ -164,7 +168,7 @@ button:hover {
     max-width: 75%;
     margin-bottom: 10px;
     align-self: flex-start;
-    font-size: 14px;
+    font-size: 16px;
     text-align: left;
 }
 
@@ -192,7 +196,12 @@ button:hover {
     }
 
     #user-input {
-        font-size: 14px;
+        font-size: 16px;
+    }
+
+    #send-btn {
+        font-size: 16px;
+        padding: 12px;
     }
 }
 
