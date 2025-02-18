@@ -40,7 +40,7 @@ input {
     margin: 8px 0;
     border: 1px solid #ddd;
     border-radius: 8px;
-    font-size: 18px;
+    font-size: 16px;
     outline: none;
     transition: 0.2s;
 }
@@ -105,6 +105,7 @@ button:hover {
 .input-container {
     display: flex;
     flex-direction: column;
+    align-items: center;
     padding: 12px;
     background: white;
     border-top: 1px solid #ddd;
@@ -117,27 +118,27 @@ button:hover {
     box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1);
 }
 
-#user-input {
-    width: 100%;
-    padding: 16px;
-    border: 1px solid #ddd;
+/* ✅ Force Input Field & Button to be EXACTLY the Same Width */
+#user-input, #send-btn {
+    width: calc(100% - 24px); /* ✅ Exact width with consistent spacing */
+    padding: 14px;
+    margin-top: 8px;
     border-radius: 12px;
-    font-size: 18px;
+    font-size: 16px;
     outline: none;
+    box-sizing: border-box; /* ✅ Prevents overflow */
+}
+
+#user-input {
+    border: 1px solid #ddd;
     background: #f9f9f9;
-    text-align: left;
 }
 
 #send-btn {
-    width: 100%;
-    margin-top: 10px;
     background-color: #ff9800;
     color: white;
     border: none;
-    padding: 14px;
-    border-radius: 12px;
     cursor: pointer;
-    font-size: 18px;
     font-weight: bold;
     transition: 0.3s;
 }
