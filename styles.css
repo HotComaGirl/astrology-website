@@ -206,3 +206,36 @@ button:hover {
     margin-top: 20px;
     text-align: center;
 }
+
+/* 📝 Pre-Requisites Section */
+.prerequisites-container {
+    width: 90%;
+    max-width: 500px;
+    background: white;
+    padding: 15px;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.prerequisites-container h2 {
+    color: #ff9800;
+    font-size: 20px;
+    text-align: center;
+}
+
+.prerequisites-container ol {
+    padding-left: 20px;
+    font-size: 16px;
+}
+
+.prerequisites-container a {
+    color: #ff9800;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.prerequisites-container a:hover {
+    text-decoration: underline;
+}
