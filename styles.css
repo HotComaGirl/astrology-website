@@ -1,57 +1,90 @@
+/* 🎨 General Styling */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #ffe5b4;
+    font-family: 'Poppins', sans-serif;
+    background-color: #ffe5b4; /* Light orange background */
     color: #333;
     text-align: center;
+    margin: 0;
+    padding: 0;
 }
 
+/* 🚀 Header */
 header {
     background-color: #ff9900;
-    padding: 10px;
+    padding: 15px;
     color: white;
     font-size: 24px;
+    font-weight: bold;
 }
 
+/* 📋 Form Container */
 .form-container {
     width: 80%;
     max-width: 400px;
-    margin: 20px auto;
+    margin: 30px auto;
     background: white;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
 }
 
-input, button {
+.form-container h2 {
+    font-size: 20px;
+    color: #ff9800;
+}
+
+/* 📥 Input Fields */
+input {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    transition: 0.2s;
 }
 
-#chat-box {
-    max-height: 300px;
-    overflow-y: auto;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 10px;
+input:focus {
+    border-color: #ff9800;
+    box-shadow: 0px 0px 5px rgba(255, 152, 0, 0.5);
 }
 
-.user-message, .bot-message {
-    padding: 10px;
-    margin: 5px;
-    border-radius: 5px;
+/* 🔘 Button */
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background-color: #ff9800;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
 }
 
-.user-message {
-    background-color: #ffcc80;
-    text-align: right;
+button:hover {
+    background-color: #e68900;
 }
 
-.bot-message {
-    background-color: #ffeb99;
-    text-align: left;
+/* ⚠️ Error Message */
+#error-msg {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
 }
 
-.adsense-placeholder {
+/* 💬 Chat Box */
+.chat-container {
+    width: 90%;
+    max-width: 500px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 15px;
     margin-top: 20px;
-    text-align: center;
-}
+    display: flex;
+    flex-direction: column;
+    height: 500px
