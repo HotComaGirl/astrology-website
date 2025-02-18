@@ -5,25 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unlimited Free Astrology</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>🔮 Unlimited Free Astrology</h1>
-        </header>
+    <header>
+        <h1>🔮 Unlimited Free Astrology</h1>
+    </header>
 
-        <div class="form-container">
-            <h2>Enter Your Astrological Details</h2>
+    <!-- ✅ Pre-Requisites Section -->
+    <div class="prerequisites-container">
+        <h2>📝 Pre-Requisites for Obtaining a Free OpenAI API Key</h2>
+        <ol>
+            <li>Go to <a href="https://platform.openai.com/signup/" target="_blank">OpenAI's website</a> and create an account.</li>
+            <li>Log in to your OpenAI account.</li>
+            <li>Go to <a href="https://platform.openai.com/account/api-keys" target="_blank">API Keys section</a>.</li>
+            <li>Click on **"Create a new secret key"** and copy it.</li>
+            <li>Paste the key in the field below to proceed.</li>
+        </ol>
+    </div>
 
-            <input type="date" id="dob" placeholder="Date of Birth">
-            <input type="time" id="tob" placeholder="Time of Birth">
-            <input type="text" id="pob" placeholder="Place of Birth">
-            <input type="password" id="api-key" placeholder="OpenAI API Key">
-            <button id="submit-btn">Proceed</button>
-
-            <p id="error-msg"></p>
-        </div>
+    <!-- ✅ Form Section -->
+    <div class="form-container">
+        <h2>Enter Your Astrological Details</h2>
+        <input type="date" id="dob" placeholder="Date of Birth">
+        <input type="time" id="tob" placeholder="Time of Birth">
+        <input type="text" id="pob" placeholder="Place of Birth">
+        <input type="password" id="api-key" placeholder="OpenAI API Key">
+        <button id="submit-btn">Proceed</button>
+        <p id="error-msg"></p>
     </div>
 
     <script>
@@ -32,11 +40,10 @@
             const tob = document.getElementById("tob").value;
             const pob = document.getElementById("pob").value;
             const apiKey = document.getElementById("api-key").value;
-            const errorMsg = document.getElementById("error-msg");
 
             if (!dob || !tob || !pob || !apiKey) {
-                errorMsg.textContent = "⚠️ All fields are required!";
-                errorMsg.style.color = "red";
+                document.getElementById("error-msg").textContent = "⚠️ All fields are required!";
+                document.getElementById("error-msg").style.color = "red";
                 return;
             }
 
