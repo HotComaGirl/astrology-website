@@ -1,48 +1,59 @@
-sendBtn.addEventListener("click", async () => {
-    const userText = userInput.value.trim();
-    if (!userText) return;
+document.addEventListener("DOMContentLoaded", () => {
+    const chatBox = document.getElementById("chat-box");
+    const userInput = document.getElementById("user-input");
+    const sendBtn = document.getElementById("send-btn");
 
-    const userMessage = document.createElement("div");
-    userMessage.classList.add("user-message");
-    userMessage.textContent = userText;
-    chatBox.appendChild(userMessage);
+    // Retrieve user details
+    const userDOB = sessionStorage.getItem("dob");
+    const userTOB = sessionStorage.getItem("tob");
+    const userPOB = sessionStorage.getItem("pob");
+    const userAPIKey = sessionStorage.getItem("apiKey");
 
-    userInput.value = "";
+    if (!userDOB || !userTOB || !userPOB || !userAPIKey) {
+        alert("Missing details! Please fill in your astrology details first.");
+        window.location.href = "index.html"; // Redirect back
+    }
 
-    const loadingMessage = document.createElement("div");
-    loadingMessage.classList.add("bot-message");
-    loadingMessage.textContent = "Thinking...";
-    chatBox.appendChild(loadingMessage);
+    sendBtn.addEventListener("click", async () => {
+        const userText = userInput.value.trim();
+        if (!userText) return;
 
-    try {
+        // Append user message
+        const userMessage = document.createElement("div");
+        userMessage.classList.add("user-message");
+        userMessage.textContent = userText;
+        chatBox.appendChild(userMessage);
+
+        // Clear input
+        userInput.value = "";
+
+        // Show loading
+        const loadingMessage = document.createElement("div");
+        loadingMessage.classList.add("bot-message");
+        loadingMessage.textContent = "Thinking...";
+        chatBox.appendChild(loadingMessage);
+
+        // API Call
         const response = await fetch("https://astrology-bot-worker.mahima-gandhi15.workers.dev/", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                sessionId: sessionStorage.getItem("sessionId"),
-                query: userText,
-                dob: sessionStorage.getItem("dob"),
-                tob: sessionStorage.getItem("tob"),
-                pob: sessionStorage.getItem("pob"),
-                apiKey: sessionStorage.getItem("apiKey"),
-            }),
+                query: `Use astrology to answer my question. My astrological details are: 
+                       DOB: ${userDOB}, Time: ${userTOB}, Place: ${userPOB}. 
+                       My question is: ${userText}`,
+                apiKey: userAPIKey
+            })
         });
 
         const responseData = await response.json();
         loadingMessage.remove();
 
-        if (responseData.choices && responseData.choices.length > 0) {
-            const botMessage = document.createElement("div");
-            botMessage.classList.add("bot-message");
-            botMessage.textContent = responseData.choices[0].message.content;
-            chatBox.appendChild(botMessage);
-        }
+        // Append bot response
+        const botMessage = document.createElement("div");
+        botMessage.classList.add("bot-message");
+        botMessage.textContent = responseData.choices[0].message.content;
+        chatBox.appendChild(botMessage);
 
-    } catch (error) {
-        loadingMessage.remove();
-        const errorMessage = document.createElement("div");
-        errorMessage.classList.add("bot-message");
-        errorMessage.textContent = "Error: " + error.message;
-        chatBox.appendChild(errorMessage);
-    }
+        chatBox.scrollTop = chatBox.scrollHeight;
+    });
 });
