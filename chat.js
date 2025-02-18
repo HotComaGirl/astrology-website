@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
         chatBox.appendChild(loadingMessage);
 
         // API Call
-        const response = await fetch("https://your-cloudflare-worker-url", {
+        const response = await fetch("https://astrology-bot-worker.mahima-gandhi15.workers.dev/", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
