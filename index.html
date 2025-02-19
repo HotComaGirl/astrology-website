@@ -8,56 +8,21 @@
 </head>
 <body>
     <header>
-        <h1>🔮 Unlimited Free Astrology</h1>
+        <h1>Unlimited Free Astrology</h1>
     </header>
 
-    <!-- ✅ Pre-Requisites Section -->
-<div class="prerequisites-container">
-    <h2>Pre-Requisites for Generating a Free OpenAI API Key</h2>
-    <ol>
-        <li>Login into <a href="https://openai.com/" target="_blank">OpenAI's website</a> and use your Gmail account to log in.</li>
-        <li>Fill in your name and birthday, then click <strong>Submit</strong>.</li>
-        <li>For "Organization Name," enter <strong>Personal</strong> and select <strong>Non-Technical</strong> for "What best describes you?" Click <strong>Submit</strong>.</li>
-        <li>When prompted to invite team members, click <strong>"I will invite my team later."</strong></li>
-        <li>Enter <strong>"TestKey"</strong> as your API Key Name and click on <strong>Generate API Key</strong>.</li>
-        <li>Click on <strong>Copy</strong> to copy the generated API key.</li>
-        <li>Save the key in a safe place and use it when asked for the <strong>OpenAI API Key</strong> on the website:</li>
-    </ol>
-    <p><a href="https://astrology-website.pages.dev/" target="_blank" class="website-link">Go to Astrology Website</a></p>
-</div>
-
-    <!-- ✅ Form Section -->
-    <div class="form-container">
-        <h2>Enter Your Astrological Details</h2>
-        <input type="date" id="dob" placeholder="Date of Birth">
-        <input type="time" id="tob" placeholder="Time of Birth">
-        <input type="text" id="pob" placeholder="Place of Birth">
-        <input type="password" id="api-key" placeholder="OpenAI API Key">
-        <button id="submit-btn">Proceed</button>
-        <p id="error-msg"></p>
+    <div class="prerequisites-container">
+        <h2>Pre-Requisites for Generating a Free OpenAI API Key</h2>
+        <ol>
+            <li>Login into <a href="https://openai.com/" target="_blank">OpenAI's website</a> and use your Gmail account to log in.</li>
+            <li>Fill in your name and birthday, then click <strong>Submit</strong>.</li>
+            <li>For "Organization Name," enter <strong>Personal</strong> and select <strong>Non-Technical</strong> for "What best describes you?" Click <strong>Submit</strong>.</li>
+            <li>When prompted to invite team members, click <strong>"I will invite my team later."</strong></li>
+            <li>Enter <strong>"TestKey"</strong> as your API Key Name and click on <strong>Generate API Key</strong>.</li>
+            <li>Click on <strong>Copy</strong> to copy the generated API key.</li>
+            <li>Save the key in a safe place and use it when asked for the <strong>OpenAI API Key</strong> on the website.</li>
+        </ol>
+        <p><a href="details.html" class="proceed-button">Proceed to Astrology Details</a></p>
     </div>
-
-    <script>
-        document.getElementById("submit-btn").addEventListener("click", () => {
-            const dob = document.getElementById("dob").value;
-            const tob = document.getElementById("tob").value;
-            const pob = document.getElementById("pob").value;
-            const apiKey = document.getElementById("api-key").value;
-
-            if (!dob || !tob || !pob || !apiKey) {
-                document.getElementById("error-msg").textContent = "⚠️ All fields are required!";
-                document.getElementById("error-msg").style.color = "red";
-                return;
-            }
-
-            // Store data in sessionStorage
-            sessionStorage.setItem("dob", dob);
-            sessionStorage.setItem("tob", tob);
-            sessionStorage.setItem("pob", pob);
-            sessionStorage.setItem("apiKey", apiKey);
-
-            window.location.href = "chat.html"; // Navigate to next page
-        });
-    </script>
 </body>
 </html>
