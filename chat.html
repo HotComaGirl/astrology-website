@@ -3,27 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat With Astrology AI</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-        .chat-container {
-            margin-top: 50px;
-        }
-        #start-chat-btn {
-            padding: 15px 25px;
-            font-size: 18px;
-            background-color: #ff9900;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-    </style>
+    <title>Astrology Chat</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
@@ -31,23 +12,51 @@
     </header>
 
     <div class="chat-container">
-        <p>Click the button below to start your astrology chat.</p>
-        <button id="start-chat-btn">Start Chat</button>
+        <div id="chat-box">
+            <div class="bot-message">Welcome! Ask any astrology-related question.</div>
+        </div>
+
+        <input type="text" id="user-input" placeholder="Type your question...">
+        <button id="send-btn">Ask</button>
     </div>
 
     <script>
-        document.getElementById("start-chat-btn").addEventListener("click", () => {
-            // Get user details from session storage
-            const userDOB = sessionStorage.getItem("dob") || "Not provided";
-            const userTOB = sessionStorage.getItem("tob") || "Not provided";
-            const userPOB = sessionStorage.getItem("pob") || "Not provided";
+        document.getElementById("send-btn").addEventListener("click", async () => {
+            const chatBox = document.getElementById("chat-box");
+            const userInput = document.getElementById("user-input");
+            const userText = userInput.value.trim();
+            if (!userText) return;
 
-            // Create a pre-filled astrology question for ChatGPT
-            const astrologyPrompt = `Use astrology to answer my question. My details are: DOB: ${userDOB}, Time: ${userTOB}, Place: ${userPOB}. Let's continue our conversation.`;
-            const chatGPTURL = `https://chat.openai.com/?prompt=${encodeURIComponent(astrologyPrompt)}`;
+            // Append user message
+            const userMessage = document.createElement("div");
+            userMessage.classList.add("user-message");
+            userMessage.textContent = userText;
+            chatBox.appendChild(userMessage);
+            userInput.value = "";
 
-            // Open ChatGPT in a new tab with the astrology question pre-filled
-            window.open(chatGPTURL, "_blank");
+            // Show loading
+            const loadingMessage = document.createElement("div");
+            loadingMessage.classList.add("bot-message");
+            loadingMessage.textContent = "Thinking...";
+            chatBox.appendChild(loadingMessage);
+
+            // API Call to Cloudflare Worker (Your Backend)
+            const response = await fetch("https://your-cloudflare-worker-url.workers.dev/", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ query: userText })
+            });
+
+            const responseData = await response.json();
+            loadingMessage.remove();
+
+            // Append bot response
+            const botMessage = document.createElement("div");
+            botMessage.classList.add("bot-message");
+            botMessage.textContent = responseData.choices[0].message.content;
+            chatBox.appendChild(botMessage);
+
+            chatBox.scrollTop = chatBox.scrollHeight;
         });
     </script>
 </body>
