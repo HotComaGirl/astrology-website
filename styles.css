@@ -259,3 +259,25 @@ button:hover {
 .proceed-button:hover {
     background-color: #e68a00;
 }
+
+/* Ensure inputs are full-width on mobile screens */
+@media screen and (max-width: 600px) {
+    input[type="date"],
+    input[type="time"],
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;  /* Full width on smaller screens */
+        font-size: 16px;  /* Bigger font for better visibility */
+        padding: 12px;  /* More padding for easy tapping */
+    }
+
+    .form-container {
+        width: 90%; /* Adjust container width for better spacing */
+        max-width: 400px;
+        margin: auto;
+    }
+
+    button {
+        width: 100%;  /* Make button full width */
+    }
+}
