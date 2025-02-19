@@ -239,3 +239,23 @@ button:hover {
         padding: 10px;
     }
 }
+
+/* Style proceed button */
+.proceed-button {
+    display: block;
+    width: 80%;
+    max-width: 300px;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #ff9900;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.proceed-button:hover {
+    background-color: #e68a00;
+}
