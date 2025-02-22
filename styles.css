@@ -1,57 +1,100 @@
-/* ChatGPT-style Chat Box Styling */
+/* 🎨 General Styling */
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #f9f9f9;
+    background-color: #ffe5b4; /* Light orange background */
     color: #333;
+    text-align: center;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
 }
 
-.chat-container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 800px;
-    height: 90vh;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-}
-
-.chat-box {
-    flex: 1;
-    padding: 20px;
-    overflow-y: auto;
-    scroll-behavior: smooth;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.input-container {
-    display: flex;
+/* 🚀 Header */
+header {
+    background-color: #ff9900;
     padding: 10px;
-    background: #fff;
-    border-top: 1px solid #ddd;
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    width: 100%;
 }
 
-#user-input {
-    flex: 1;
-    padding: 12px;
+/* ✅ Added margin for spacing between header & Pre-requisites */
+.prerequisites-container {
+    width: 80%;
+    max-width: 600px;
+    margin: 20px auto;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.prerequisites-container h2 {
+    color: #ff9900;
+    font-size: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.prerequisites-container ol {
+    padding-left: 20px;
+}
+
+.prerequisites-container li {
+    margin-bottom: 8px;
+}
+
+.website-link {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
     font-size: 16px;
+    font-weight: bold;
+    color: #ff9900;
+    text-decoration: none;
+}
+
+.website-link:hover {
+    text-decoration: underline;
+}
+
+/* 📋 Form Container (Page 1) */
+.form-container {
+    width: 90%;
+    max-width: 450px;
+    background: white;
+    padding: 15px;
+    margin: 10px auto;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 📥 Input Fields */
+input {
+    width: calc(100% - 20px);
+    padding: 12px;
+    margin: 6px 0;
     border: 1px solid #ddd;
     border-radius: 8px;
+    font-size: 14px;
     outline: none;
+    transition: 0.2s;
 }
 
-#send-btn {
-    padding: 12px 20px;
-    margin-left: 10px;
+input:focus {
+    border-color: #ff9800;
+    box-shadow: 0px 0px 5px rgba(255, 152, 0, 0.5);
+}
+
+/* 🔘 Submit Button */
+button {
+    width: calc(100% - 20px);
+    padding: 12px;
+    margin-top: 8px;
     background-color: #ff9800;
     color: white;
     font-size: 16px;
@@ -62,30 +105,262 @@ body {
     transition: 0.3s;
 }
 
+button:hover {
+    background-color: #e68900;
+}
+
+/* ⚠️ Error Message */
+#error-msg {
+    color: red;
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+/* ✅ Chat Page (Page 2) - Restored Original Layout */
+.chat-container {
+    width: 90%;
+    max-width: 500px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    overflow: hidden;
+}
+
+#chat-box {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    scrollbar-width: thin;
+    max-height: 400px;
+}
+
+/* 📤 Chat Input Section (Second Page) */
+.input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px;
+    background: white;
+    border-top: 1px solid #ddd;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ✅ Input & Button Have Same Width */
+#user-input, #send-btn {
+    width: calc(100% - 24px);
+    padding: 14px;
+    margin-top: 8px;
+    border-radius: 12px;
+    font-size: 16px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+#user-input {
+    border: 1px solid #ddd;
+    background: #f9f9f9;
+}
+
+#send-btn {
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
 #send-btn:hover {
     background-color: #e68900;
 }
 
-.user-message, .bot-message {
-    max-width: 75%;
+/* 👤 User Messages */
+.user-message {
+    background-color: #ffcc80;
+    color: #333;
     padding: 12px;
-    border-radius: 12px;
+    border-radius: 15px;
+    max-width: 75%;
+    margin-bottom: 10px;
+    align-self: flex-end;
+    font-size: 16px;
+    text-align: right;
+}
+
+/* 🤖 Bot Messages */
+.bot-message {
+    background-color: #ffeb99;
+    color: #333;
+    padding: 12px;
+    border-radius: 15px;
+    max-width: 75%;
+    margin-bottom: 10px;
+    align-self: flex-start;
+    font-size: 16px;
+    text-align: left;
+}
+
+/* 🔄 Smooth Fade-In Effect */
+.user-message, .bot-message {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 📱 Mobile Responsive */
+@media (max-width: 600px) {
+    .prerequisites-container, .form-container, .chat-container {
+        width: 95%;
+    }
+
+    input, button {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+
+/* Style proceed button */
+.proceed-button {
+    display: block;
+    width: 80%;
+    max-width: 300px;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #ff9900;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.proceed-button:hover {
+    background-color: #e68a00;
+}
+
+/* Ensure date and time inputs are full-width and readable on mobile */
+@media screen and (max-width: 600px) {
+    input[type="date"],
+    input[type="time"] {
+        width: 100%;  /* Make them full width */
+        min-width: 280px;  /* Ensure they don’t shrink too much */
+        font-size: 18px;  /* Bigger font for better visibility */
+        padding: 12px;  /* More padding for easier tapping */
+        height: 45px; /* Set height to make them properly visible */
+        text-align: center; /* Center align text for better look */
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    .form-container {
+        width: 90%;
+        max-width: 400px;
+        margin: auto;
+    }
+
+    button {
+        width: 100%;
+        font-size: 18px;
+        padding: 12px;
+    }
+}
+
+/* Default styling for all input fields */
+input[type="date"],
+input[type="time"],
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    max-width: 400px;
+    font-size: 18px;
+    padding: 12px;
+    height: 50px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-sizing: border-box; /* Prevents extra spacing issues */
+}
+
+/* Ensure placeholders for date & time are visible before selection */
+input[type="date"]::before,
+input[type="time"]::before {
+    content: attr(placeholder);
+    color: #999;
     font-size: 16px;
 }
 
-.user-message {
-    background-color: #d1e7fd;
-    align-self: flex-end;
+input[type="date"]:focus::before,
+input[type="time"]:focus::before {
+    content: "";
 }
 
-.bot-message {
-    background-color: #f1f1f1;
-    align-self: flex-start;
+/* Responsive Adjustments for Different Screen Sizes */
+@media screen and (max-width: 600px) {
+    /* For mobile screens */
+    input[type="date"],
+    input[type="time"] {
+        min-width: 280px;
+        font-size: 18px;
+        height: 50px;
+    }
+
+    .form-container {
+        width: 90%;
+        max-width: 400px;
+        margin: auto;
+    }
+
+    button {
+        width: 100%;
+        font-size: 18px;
+        padding: 12px;
+    }
 }
 
-@media (max-width: 600px) {
-    .chat-container {
-        width: 95%;
-        height: 95vh;
+@media screen and (min-width: 601px) and (max-width: 1024px) {
+    /* For tablets */
+    input[type="date"],
+    input[type="time"] {
+        min-width: 320px;
+        font-size: 18px;
+        height: 50px;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    /* For large screens */
+    input[type="date"],
+    input[type="time"] {
+        max-width: 400px;
+        font-size: 18px;
+        height: 50px;
     }
 }
