@@ -3,61 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Astrology Chat</title>
+    <title>Ask Your Astrology Question</title>
     <link rel="stylesheet" href="styles.css">
+    <script defer src="chat.js"></script>
 </head>
 <body>
     <header>
-        <h1>Unlimited Free Astrology Chat</h1>
+        <h1>🔮 Unlimited, Free & Accurate Astrology</h1>
     </header>
 
     <div class="chat-container">
         <div id="chat-box">
-            <div class="bot-message">Welcome! Ask any astrology-related question.</div>
+            <div class="bot-message">🌟 Welcome! Ask any question about yourself, your past, or your future.</div>
         </div>
 
-        <input type="text" id="user-input" placeholder="Type your question...">
-        <button id="send-btn">Ask</button>
+        <!-- ✅ Input field & button wrapped inside a fixed container -->
+        <div class="input-container">
+            <input type="text" id="user-input" placeholder="Type your astrology question here..." autofocus>
+            <button id="send-btn">🔮 Ask</button>
+        </div>
     </div>
 
-    <script>
-        document.getElementById("send-btn").addEventListener("click", async () => {
-            const chatBox = document.getElementById("chat-box");
-            const userInput = document.getElementById("user-input");
-            const userText = userInput.value.trim();
-            if (!userText) return;
-
-            // Append user message
-            const userMessage = document.createElement("div");
-            userMessage.classList.add("user-message");
-            userMessage.textContent = userText;
-            chatBox.appendChild(userMessage);
-            userInput.value = "";
-
-            // Show loading
-            const loadingMessage = document.createElement("div");
-            loadingMessage.classList.add("bot-message");
-            loadingMessage.textContent = "Thinking...";
-            chatBox.appendChild(loadingMessage);
-
-            // API Call to Cloudflare Worker (Your Backend)
-            const response = await fetch("https://your-cloudflare-worker-url.workers.dev/", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ query: userText })
-            });
-
-            const responseData = await response.json();
-            loadingMessage.remove();
-
-            // Append bot response
-            const botMessage = document.createElement("div");
-            botMessage.classList.add("bot-message");
-            botMessage.textContent = responseData.choices[0].message.content;
-            chatBox.appendChild(botMessage);
-
-            chatBox.scrollTop = chatBox.scrollHeight;
-        });
-    </script>
+    <div class="adsense-placeholder">
+        <p>Ad Placeholder</p>
+    </div>
 </body>
 </html>
