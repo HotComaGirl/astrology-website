@@ -39,9 +39,12 @@ document.addEventListener("DOMContentLoaded", () => {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                query: `Use astrology to answer my question. Very important - keep your answer brief and yet complete. My astrological details are: 
-                       DOB: ${userDOB}, Time: ${userTOB}, Place: ${userPOB}. 
-                       My question is: ${userText}`,
+                query: `Use astrology to answer my question with accuracy. Focus on specific timeframes and astrological reasoning.  
+                Important: Keep your answer brief yet complete.  
+                My astrological details are:  
+                DOB: ${userDOB}, Time: ${userTOB}, Place: ${userPOB}.  
+                My question is: ${userText}.  
+                If possible, provide a specific date or time range in your response.`,
                 apiKey: userAPIKey
             })
         });
