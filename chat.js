@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
             body: JSON.stringify({
                 query: `Use astrology to answer my question with accuracy. Focus on specific timeframes and astrological reasoning. My astrological details are: 
                        Important: Keep your answer brief yet complete.
-                       DOB: ${userDOB}, Time: ${userTOB}, Place: ${userPOB}. Just for your information, we are currently in year 2025.
+                       DOB: ${userDOB}, Time: ${userTOB}, Place: ${userPOB}. 
                        My question is: ${userText}. If possible, provide a specific date or time range in your response.`,
                 apiKey: userAPIKey
             })
