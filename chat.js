@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 query: `Use astrology to answer my question. Very important - keep your answer brief and yet complete. My astrological details are: 
-                       DOB: ${userDOB}, Time: ${userTOB}, Place: ${userPOB}. Just for your information, we are currently in year 2025.
+                       DOB: ${userDOB}, Time: ${userTOB}, Place: ${userPOB}. 
                        My question is: ${userText}`,
                 apiKey: userAPIKey
             })
