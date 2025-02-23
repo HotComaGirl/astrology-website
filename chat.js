@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const userTOB = sessionStorage.getItem("tob");
     const userPOB = sessionStorage.getItem("pob");
     //const userAPIKey = sessionStorage.getItem("apiKey");
-    const userAPIKey = "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";  // API key should be managed server-side
+    const userAPIKey = "abcd";  // API key should be managed server-side
 
     if (!userDOB || !userTOB || !userPOB || !userAPIKey) {
         alert("Missing details! Please fill in your astrology details first.");
