@@ -39,6 +39,21 @@
             // Navigate to the chat page
             window.location.href = "chat.html";
         });
+
+    document.addEventListener("contextmenu", function(event) {
+        event.preventDefault();
+    });
+
+    document.addEventListener("keydown", function(event) {
+        if (event.ctrlKey && (event.key === "u" || event.key === "s" || event.key === "i" || event.key === "j")) {
+            event.preventDefault();
+        }
+        if (event.keyCode === 123) { // F12
+            event.preventDefault();
+        }
+    });
+
+
     </script>
 </body>
 </html>
