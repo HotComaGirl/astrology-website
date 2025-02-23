@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         const userText = sanitizeInput(userInput.value);
-        if (!userText || userText.length < 3 || userText.length > 500) {
+        if (!userText || userText.length < 3 || userText.length > 100) {
         alert("Your question must be between 3 and 100 characters.");
         return;
 }
