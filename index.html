@@ -20,6 +20,25 @@
         <p id="error-msg"></p>
     </div>
 
-  
+    <script>
+        document.getElementById("submit-btn").addEventListener("click", () => {
+            const dob = document.getElementById("dob").value;
+            const tob = document.getElementById("tob").value;
+            const pob = document.getElementById("pob").value;
+
+            if (!dob || !tob || !pob ) {
+                document.getElementById("error-msg").textContent = "All fields are required!";
+                return;
+            }
+
+            // Store data in sessionStorage
+            sessionStorage.setItem("dob", dob);
+            sessionStorage.setItem("tob", tob);
+            sessionStorage.setItem("pob", pob);
+
+            // Navigate to the chat page
+            window.location.href = "chat.html";
+        });
+    </script>
 </body>
 </html>
