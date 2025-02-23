@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // API Call
         const response = await fetch("https://astrology-bot-worker.mahima-gandhi15.workers.dev/", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: { "Authorization": "Bearer ${userAPIKey}","Content-Type": "application/json" },
             body: JSON.stringify({
                 query: `1) Use astrology to answer my question with accuracy.  
                             a) If my question is about **when something will happen**, consider my **entire lifetime**, not just the current or next few years. 
