@@ -47,6 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
           - 🚫 DO NOT include phrases like "the future depends on other factors," "nothing is certain," or "free will affects outcomes."  
           - 🚫 DO NOT discuss psychology, mindset, or personal effort—**stick to astrology only.**  
           - ✅ ONLY provide answers based on astrology, such as planetary influences, transits, houses, signs, and aspects.  
+                       3) Keep your answer brief, yet complete
                        3) My astrological details are: 
                        DOB: ${userDOB}, Time: ${userTOB}, Place: ${userPOB}. 
                        4) My question is: ${userText}.`,
