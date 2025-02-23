@@ -33,26 +33,7 @@
         }
     </style>
 
-<script>
-document.addEventListener("contextmenu", event => event.preventDefault()); // Disable right-click
 
-document.addEventListener("keydown", event => {
-    if (event.ctrlKey && (event.key === "u" || event.key === "s" || event.key === "i" || event.key === "j" || event.keyCode === 123)) {
-        event.preventDefault();
-    }
-});
-
-// Detect DevTools & Close Page if Open
-setInterval(() => {
-    const before = new Date().getTime();
-    debugger;  // Forces DevTools to activate if open
-    const after = new Date().getTime();
-    if (after - before > 100) {
-        alert("Developer tools detected! Closing page.");
-        window.location.href = "about:blank"; // Close the page
-    }
-}, 3000);
-</script>
 
 </head>
 <body>
