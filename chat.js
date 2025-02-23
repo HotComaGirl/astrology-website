@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const userTOB = sessionStorage.getItem("tob");
     const userPOB = sessionStorage.getItem("pob");
     //const userAPIKey = sessionStorage.getItem("apiKey");
-    const userAPIKey = "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";
+    const userAPIKey = "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";
 
     if (!userDOB || !userTOB || !userPOB || !userAPIKey) {
         alert("Missing details! Please fill in your astrology details first.");
