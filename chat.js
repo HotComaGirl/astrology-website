@@ -16,7 +16,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     sendBtn.addEventListener("click", async () => {
-        const userText = userInput.value.trim();
+        function sanitizeInput(str) {
+            return str.replace(/[<>\/\\]/g, "").trim();  // Removes `<`, `>`, `/`, `\`
+        }
+
+        const userText = sanitizeInput(userInput.value);
         if (!userText) return;
 
         // Append user message
