@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
             })
         });
 
-const responseData = await response.json();
+        const responseData = await response.json();
         loadingMessage.remove();
 
         // Append bot response
