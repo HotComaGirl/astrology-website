@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             a) If my question is about **when something will happen**, consider my **entire lifetime**, not just the current or next few years. 
                               If possible, provide a specific date or time range in your response, covering all relevant future periods.Provide specific timeframes, dates, or periods when possible.  
                             b) If my question is **not time-related**, focus only on astrological insights without adding unnecessary time references.  
-                       2) Important: Explain your answer, but keep it brief, yet complete.
+                       2) Important: Explain your answer, but keep it brief, yet complete. Restrict your answer to astrology ONLY.
                        3) My astrological details are: 
                        DOB: ${userDOB}, Time: ${userTOB}, Place: ${userPOB}. 
                        4) My question is: ${userText}.`,
