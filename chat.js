@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const userTOB = sessionStorage.getItem("tob");
     const userPOB = sessionStorage.getItem("pob");
     //const userAPIKey = sessionStorage.getItem("apiKey");
-    const userAPIKey = "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";
+    const userAPIKey = "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";
 
     if (!userDOB || !userTOB || !userPOB || !userAPIKey) {
         alert("Missing details! Please fill in your astrology details first.");
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             a) If my question is about **when something will happen**, consider my **entire lifetime**, not just the current or next few years. 
                               If possible, provide a specific date or time range in your response, covering all relevant future periods.Provide specific timeframes, dates, or periods when possible.  
                             b) If my question is **not time-related**, focus only on astrological insights without adding unnecessary time references.  
-                       2) Important: Keep your answer brief yet complete.
+                       2) Important: Explain your answer, but keep it brief, yet complete.
                        3) My astrological details are: 
                        DOB: ${userDOB}, Time: ${userTOB}, Place: ${userPOB}. 
                        4) My question is: ${userText}.`,
