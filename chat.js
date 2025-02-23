@@ -58,7 +58,14 @@ document.addEventListener("DOMContentLoaded", () => {
             })
         });
 
-        const responseData = await response.json();
+const responseData = await response.json();
+document.head.insertAdjacentHTML("beforeend", `
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self'; 
+        script-src 'self'; 
+        object-src 'none'; 
+        frame-ancestors 'none';">
+`);
         loadingMessage.remove();
 
         // Append bot response
