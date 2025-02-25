@@ -34,6 +34,9 @@ document.addEventListener("DOMContentLoaded", () => {
         loadingMessage.textContent = "Thinking...";
         chatBox.appendChild(loadingMessage);
 
+        // Get the current date dynamically
+        const currentDate = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD
+
         // API Call
         const response = await fetch("https://astrology-bot-worker.mahima-gandhi15.workers.dev/", {
             method: "POST",
@@ -45,7 +48,8 @@ document.addEventListener("DOMContentLoaded", () => {
                             event. If possible, include specific dates or time ranges. Do not limit the prediction to just the near future.
                             b) If my question is about whether something will happen within a specific period (e.g., tomorrow, 2039, or 2040), consider only that 
                             period for your prediction. Restrict the analysis strictly to the given timeframe and do not extend beyond it unless explicitly requested.
-                            c) If my question is not time-related, focus only on astrological insights without introducing unnecessary time references.   
+                            c) If my question is not time-related, focus only on astrological insights without introducing unnecessary time references.
+                            d) Assume today’s date is ${currentDate} (in [YYYY-MM-DD] format) when answering my question. Adjust all time-related calculations accordingly.
                         
                         2) **Strictly follow these rules**:  
                             - 🚫 DO NOT include phrases like "the future depends on other factors," "nothing is certain," or "free will affects outcomes."  
