@@ -1,50 +1,78 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const chatBox = document.getElementById("chat-box");
-    const userInput = document.getElementById("user-input");
-    const sendBtn = document.getElementById("send-btn");
+document.addEventListener("DOMContentLoaded", function () {
+    const chatInput = document.getElementById("chat-input");
+    const chatSubmit = document.getElementById("chat-submit");
+    const chatContainer = document.getElementById("chat-container");
 
-    const userDOB = sessionStorage.getItem("dob");
-    const userTOB = sessionStorage.getItem("tob");
-    const userPOB = sessionStorage.getItem("pob");
-    const userAPIKey = "abcd";
+    chatSubmit.addEventListener("click", sendMessage);
+    chatInput.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            sendMessage();
+        }
+    });
 
-    if (!userDOB || !userTOB || !userPOB || !userAPIKey) {
-        alert("Missing details! Please fill in your astrology details first.");
-        window.location.href = "index.html"; 
+    async function sendMessage() {
+        const userMessage = chatInput.value.trim();
+        if (!userMessage) return;
+
+        // Display user message
+        displayMessage(userMessage, "user");
+        chatInput.value = "";
+
+        // API Call to Cloudflare Worker
+        try {
+            const response = await fetch("https://astrology-bot-worker.mahima-gandhi15.workers.dev/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ query: userMessage })
+            });
+
+            if (!response.ok) {
+                console.error("Server Error:", await response.text());
+                displayMessage("Error: Unable to fetch response.", "bot");
+                return;
+            }
+
+            // Handle streaming response
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder();
+            let botMessage = "";
+            let botMessageElement = displayMessage("", "bot");
+
+            while (true) {
+                const { value, done } = await reader.read();
+                if (done) break;
+                const chunk = decoder.decode(value, { stream: true });
+
+                // Extract actual content from streamed data
+                const lines = chunk.split("\n").filter(line => line.trim() !== "");
+                for (const line of lines) {
+                    if (line.startsWith("data:")) {
+                        try {
+                            const token = line.substring(5).trim(); // Extract token
+                            botMessage += token;
+                            botMessageElement.innerText = botMessage; // Update message live
+                        } catch (err) {
+                            console.error("Parsing Error:", err);
+                        }
+                    }
+                }
+            }
+
+        } catch (error) {
+            console.error("Request Failed:", error);
+            displayMessage("Error: Unable to connect to the server.", "bot");
+        }
     }
 
-    sendBtn.addEventListener("click", async () => {
-        const userText = userInput.value.trim();
-        if (!userText) return;
-
-        const userMessage = document.createElement("div");
-        userMessage.classList.add("user-message");
-        userMessage.textContent = userText;
-        chatBox.appendChild(userMessage);
-
-        userInput.value = "";
-
-        const loadingMessage = document.createElement("div");
-        loadingMessage.classList.add("bot-message");
-        loadingMessage.textContent = "🔮 ";
-        chatBox.appendChild(loadingMessage);
-
-        const eventSource = new EventSource("https://astrology-bot-worker.mahima-gandhi15.workers.dev/");
-
-        let botMessage = document.createElement("div");
-        botMessage.classList.add("bot-message");
-        chatBox.appendChild(botMessage);
-
-        eventSource.onmessage = (event) => {
-            if (event.data) {
-                botMessage.textContent += event.data;
-                chatBox.scrollTop = chatBox.scrollHeight;
-            }
-        };
-
-        eventSource.onerror = (error) => {
-            console.error("Streaming error:", error);
-            eventSource.close();
-        };
-    });
+    function displayMessage(text, sender) {
+        const messageDiv = document.createElement("div");
+        messageDiv.classList.add("message", sender);
+        messageDiv.innerText = text;
+        chatContainer.appendChild(messageDiv);
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+        return messageDiv;
+    }
 });
