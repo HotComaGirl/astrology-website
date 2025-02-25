@@ -55,30 +55,19 @@
 
 
 <script>
-    // Disable Right-Click
-    document.addEventListener("contextmenu", function (e) {
-        e.preventDefault();
-    });
+    document.addEventListener("contextmenu", (event) => event.preventDefault()); // Disable right-click
 
-    // Disable Common DevTools Shortcuts
-    document.addEventListener("keydown", function (e) {
-        if (e.ctrlKey && (e.key === "u" || e.key === "s" || e.key === "i" || e.key === "j")) {
-            e.preventDefault();
-        }
-        if (e.key === "F12" || (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J" || e.key === "C"))) {
-            e.preventDefault();
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "F12" || 
+            (event.ctrlKey && event.shiftKey && event.key === "I") || 
+            (event.ctrlKey && event.shiftKey && event.key === "J") || 
+            (event.ctrlKey && event.key === "U")) {
+            event.preventDefault();
         }
     });
 
-    // Detect DevTools Open
-    (function () {
-        var devtools = /./;
-        devtools.toString = function () {
-            alert("Developer Tools are disabled on this site.");
-            //window.location.reload();
-        };
-        console.log("%c", devtools);
-    })();
+    document.addEventListener("dragstart", (event) => event.preventDefault()); // Prevent dragging
+    document.addEventListener("selectstart", (event) => event.preventDefault()); // Prevent text selection
 </script>
 
 </body>
