@@ -38,6 +38,8 @@ document.addEventListener("DOMContentLoaded", () => {
             body: JSON.stringify({ query: userText })
         });
 
+        response.headers.get("Content-Type")
+
         const reader = response.body.getReader();
         const decoder = new TextDecoder();
         let botResponse = "";
@@ -47,10 +49,9 @@ document.addEventListener("DOMContentLoaded", () => {
             if (done) return;
             botResponse += decoder.decode(value, { stream: true });
             loadingMessage.textContent = botResponse; // ✅ Update UI dynamically
-            await readStream();
+            //await readStream();
         }
 
-        readStream();
-        chatBox.scrollTop = chatBox.scrollHeight;
+await readStream(); // ✅ Ensure it's awaited        chatBox.scrollTop = chatBox.scrollHeight;
     });
 });
