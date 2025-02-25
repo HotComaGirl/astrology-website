@@ -66,15 +66,47 @@ document.addEventListener("DOMContentLoaded", () => {
             })
         });
 
-        const responseData = await response.json();
+        /*const responseData = await response.json();
         loadingMessage.remove();
 
         // Append bot response
         const botMessage = document.createElement("div");
         botMessage.classList.add("bot-message");
         botMessage.textContent = responseData.choices[0].message.content;
+        chatBox.appendChild(botMessage);*/
+
+
+
+        loadingMessage.textContent = ""; // Clear "Thinking..." text
+
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder("utf-8");
+
+        let botMessage = document.createElement("div");
+        botMessage.classList.add("bot-message");
         chatBox.appendChild(botMessage);
 
-        chatBox.scrollTop = chatBox.scrollHeight;
+        (async () => {
+            while (true) {
+                const { value, done } = await reader.read();
+                if (done) break;
+
+                const chunk = decoder.decode(value, { stream: true });
+                const lines = chunk.split("\n").filter(line => line.trim() !== "");
+
+            for (const line of lines) {
+                if (line.startsWith("data: ")) {
+                    const token = line.substring(6).trim();
+                    botMessage.textContent += token;
+                }
+            }
+
+            chatBox.scrollTop = chatBox.scrollHeight;
+            }
+        })();
     });
-});
+})
+        
+        
+
+        
