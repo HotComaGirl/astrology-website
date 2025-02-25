@@ -40,9 +40,10 @@ document.addEventListener("DOMContentLoaded", () => {
             headers: { "Authorization": 'Bearer ${userAPIKey}', "Content-Type": "application/json" },
             body: JSON.stringify({
                 query: `1) Use astrology to answer my question with accuracy.  
-                            a) If my question is about **when something will happen** or **will something happen**, consider my **entire lifetime**, not just the current or next few years. 
+                            a) If my question is about **when something will happen**, consider my **entire lifetime**, not just the current or next few years. 
                               If possible, provide a specific date or time range in your response, covering all relevant future periods.Provide specific timeframes, dates, or periods when possible.  
-                            b) If my question is **not time-related**, focus only on astrological insights without adding unnecessary time references.  
+                            b) b) If my question is about whether something will happen within a specific period (e.g., tomorrow, 2039, or 2040), consider only that period for your prediction.  
+                            c) If my question is **not time-related**, focus only on astrological insights without adding unnecessary time references.  
        2) **Strictly follow these rules**:  
           - 🚫 DO NOT include phrases like "the future depends on other factors," "nothing is certain," or "free will affects outcomes."  
           - 🚫 DO NOT discuss psychology, mindset, or personal effort—**stick to astrology only.**  
