@@ -64,16 +64,38 @@ document.addEventListener("DOMContentLoaded", () => {
                        5) My question is: ${userText}.`,
                 apiKey: userAPIKey
             })
+
+        /* New Lines - 1*/
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+        let botResponse = "";
+
+        async function readStream() {
+        const { done, value } = await reader.read();
+        if (done) {
+            return;
+        }
+            botResponse += decoder.decode(value, { stream: true });
+            chatBox.appendChild(botResponse); // Function to update chat UI dynamically
+            await readStream();
+        }
+
+        readStream();
+
+        /* New Lines - 1 end*/
+
+            
         });
 
-        const responseData = await response.json();
+        
+        /*const responseData = await response.json();
         loadingMessage.remove();
 
         // Append bot response
         const botMessage = document.createElement("div");
         botMessage.classList.add("bot-message");
         botMessage.textContent = responseData.choices[0].message.content;
-        chatBox.appendChild(botMessage);
+        chatBox.appendChild(botMessage);*/
 
         chatBox.scrollTop = chatBox.scrollHeight;
     });
