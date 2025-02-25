@@ -54,6 +54,32 @@
     </div>
 
 
+<script>
+    // Disable Right-Click
+    document.addEventListener("contextmenu", function (e) {
+        e.preventDefault();
+    });
+
+    // Disable Common DevTools Shortcuts
+    document.addEventListener("keydown", function (e) {
+        if (e.ctrlKey && (e.key === "u" || e.key === "s" || e.key === "i" || e.key === "j")) {
+            e.preventDefault();
+        }
+        if (e.key === "F12" || (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J" || e.key === "C"))) {
+            e.preventDefault();
+        }
+    });
+
+    // Detect DevTools Open
+    (function () {
+        var devtools = /./;
+        devtools.toString = function () {
+            alert("Developer Tools are disabled on this site.");
+            window.location.reload();
+        };
+        console.log("%c", devtools);
+    })();
+</script>
 
 </body>
 </html>
