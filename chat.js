@@ -40,18 +40,24 @@ document.addEventListener("DOMContentLoaded", () => {
             headers: { "Authorization": 'Bearer ${userAPIKey}', "Content-Type": "application/json" },
             body: JSON.stringify({
                 query: `1) Use astrology to answer my question with accuracy.  
-                            a) If my question is about **when something will happen**, consider my **entire lifetime**, not just the current or next few years. 
-                              If possible, provide a specific date or time range in your response, covering all relevant future periods.Provide specific timeframes, dates, or periods when possible.  
-                            b) b) If my question is about whether something will happen within a specific period (e.g., tomorrow, 2039, or 2040), consider only that period for your prediction.  
-                            c) If my question is **not time-related**, focus only on astrological insights without adding unnecessary time references.  
-       2) **Strictly follow these rules**:  
-          - 🚫 DO NOT include phrases like "the future depends on other factors," "nothing is certain," or "free will affects outcomes."  
-          - 🚫 DO NOT discuss psychology, mindset, or personal effort—**stick to astrology only.**  
-          - ✅ ONLY provide answers based on astrology, such as planetary influences, transits, houses, signs, and aspects.  
+                        
+                            a) If my question is about when something will happen, analyze my entire lifetime and provide the most likely time period(s) for the 
+                            event. If possible, include specific dates or time ranges. Do not limit the prediction to just the near future.
+                            b) If my question is about whether something will happen within a specific period (e.g., tomorrow, 2039, or 2040), consider only that 
+                            period for your prediction. Restrict the analysis strictly to the given timeframe and do not extend beyond it unless explicitly requested.
+                            c) If my question is not time-related, focus only on astrological insights without introducing unnecessary time references.   
+                        
+                        2) **Strictly follow these rules**:  
+                            - 🚫 DO NOT include phrases like "the future depends on other factors," "nothing is certain," or "free will affects outcomes."  
+                            - 🚫 DO NOT discuss psychology, mindset, or personal effort—**stick to astrology only.**  
+                            - ✅ ONLY provide answers based on astrology, such as planetary influences, transits, houses, signs, and aspects.  
+                      
                        3) Keep your answer brief, yet complete
-                       3) My astrological details are: 
+                       
+                       4) My astrological details are: 
                        DOB: ${userDOB}, Time: ${userTOB}, Place: ${userPOB}. 
-                       4) My question is: ${userText}.`,
+                       
+                       5) My question is: ${userText}.`,
                 apiKey: userAPIKey
             })
         });
