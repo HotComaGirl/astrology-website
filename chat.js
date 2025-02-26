@@ -66,11 +66,11 @@ document.addEventListener("DOMContentLoaded", () => {
             })
         });
 
-        /*const responseData = await response.json();
+        /*const responseData = await response.json();*/
         loadingMessage.remove();
 
         // Append bot response
-        const botMessage = document.createElement("div");
+        /*const botMessage = document.createElement("div");
         botMessage.classList.add("bot-message");
         botMessage.textContent = responseData.choices[0].message.content;
         chatBox.appendChild(botMessage);*/
