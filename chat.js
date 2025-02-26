@@ -79,8 +79,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const reader = response.body.getReader();
         const decoder = new TextDecoder();
         let partialMessage = "";
-
-        while (true) {
+        botMessage.textContent = "abcd";
+        /*while (true) {
             const { done, value } = await reader.read();
             if (done) break;
 
@@ -92,6 +92,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         chatBox.scrollTop = chatBox.scrollHeight;
-        }
+        }*/
     });
 });
