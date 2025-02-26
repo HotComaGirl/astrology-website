@@ -66,14 +66,30 @@ document.addEventListener("DOMContentLoaded", () => {
             })
         });
 
-        const responseData = await response.json();
+        /*const responseData = await response.json();
         loadingMessage.remove();
 
         // Append bot response
         const botMessage = document.createElement("div");
         botMessage.classList.add("bot-message");
         botMessage.textContent = responseData.choices[0].message.content;
-        chatBox.appendChild(botMessage);
+        chatBox.appendChild(botMessage);*/
+
+        // Stream response
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+        let partialMessage = "";
+
+        while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+
+            const text = decoder.decode(value, { stream: true });
+            partialMessage += text;
+            
+            // Update bot message in real-time
+            botMessage.textContent = partialMessage;
+
 
         chatBox.scrollTop = chatBox.scrollHeight;
     });
