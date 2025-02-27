@@ -81,9 +81,12 @@ document.addEventListener("DOMContentLoaded", () => {
         //let partialMessage = "";
         const botMessage = document.createElement("div");
         botMessage.classList.add("bot-message");
-        botMessage.textContent = "abcd";
         chatBox.appendChild(botMessage);
-        /*while (true) {
+
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+
+        while (true) {
             const { done, value } = await reader.read();
             if (done) break;
 
@@ -92,9 +95,9 @@ document.addEventListener("DOMContentLoaded", () => {
             
             // Update bot message in real-time
             botMessage.textContent = partialMessage;
-
+        
 
         chatBox.scrollTop = chatBox.scrollHeight;
-        }*/
+        }
     });
 });
