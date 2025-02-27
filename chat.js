@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const currentDate = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD
 
         // API Call
-        /*const response = await fetch("https://astrology-bot-worker.mahima-gandhi15.workers.dev/", {
+        const response = await fetch("https://astrology-bot-worker.mahima-gandhi15.workers.dev/", {
             method: "POST",
             headers: { "Authorization": 'Bearer ${userAPIKey}', "Content-Type": "text/event-stream" },
             body: JSON.stringify({
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
                        5) My question is: ${userText}.`,
                 apiKey: userAPIKey
             })
-        });*/
+        });
 
         /*const responseData = await response.json();*/
         loadingMessage.remove();
