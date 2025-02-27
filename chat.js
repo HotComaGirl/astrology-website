@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
                        5) My question is: ${userText}.`,
                 apiKey: userAPIKey
             })
-        });
+        });*/
 
         /*const responseData = await response.json();*/
         loadingMessage.remove();
@@ -79,7 +79,8 @@ document.addEventListener("DOMContentLoaded", () => {
         //const reader = response.body.getReader();
         //const decoder = new TextDecoder();
         //let partialMessage = "";
-        
+        const botMessage = document.createElement("div");
+        botMessage.classList.add("bot-message");
         botMessage.textContent = "abcd";
         /*while (true) {
             const { done, value } = await reader.read();
