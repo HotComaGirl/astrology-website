@@ -82,6 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const botMessage = document.createElement("div");
         botMessage.classList.add("bot-message");
         botMessage.textContent = "abcd";
+        chatBox.appendChild(botMessage);
         /*while (true) {
             const { done, value } = await reader.read();
             if (done) break;
