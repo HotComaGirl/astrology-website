@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const reader = response.body.getReader();
         const decoder = new TextDecoder();
         let partialMessage = "";
-        botMessage.textContent = partialMessage;
+        botMessage.textContent = "abcd";
         /*while (true) {
             const { done, value } = await reader.read();
             if (done) break;
