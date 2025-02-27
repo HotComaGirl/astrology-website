@@ -66,38 +66,39 @@ document.addEventListener("DOMContentLoaded", () => {
             })
         });
 
-        /*const responseData = await response.json();*/
-        loadingMessage.remove();
+    // Read Stream
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+    let botMessage = document.createElement("div");
+    botMessage.classList.add("bot-message");
+    chatBox.appendChild(botMessage);
 
-        // Append bot response
-        /*const botMessage = document.createElement("div");
-        botMessage.classList.add("bot-message");
-        botMessage.textContent = responseData.choices[0].message.content;
-        chatBox.appendChild(botMessage);*/
+    let fullResponse = ""; // Store complete response
 
-        // Stream response
-        //const reader = response.body.getReader();
-        //const decoder = new TextDecoder();
-        //let partialMessage = "";
-        const botMessage = document.createElement("div");
-        botMessage.classList.add("bot-message");
-        chatBox.appendChild(botMessage);
+    while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
 
-        const reader = response.body.getReader();
-        const decoder = new TextDecoder();
-        let partialMessage = "";
-        while (true) {
-            const { done, value } = await reader.read();
-            if (done) break;
+        // Decode chunk
+        const chunkText = decoder.decode(value, { stream: true });
 
-            const text = decoder.decode(value, { stream: true });
-            partialMessage += text;
-            
-            // Update bot message in real-time
-            botMessage.textContent = partialMessage;
-        
+        // Extract "content" from the streamed JSON
+        const regex = /"content":"(.*?)"/g;
+        let match;
+        let extractedText = "";
 
-        chatBox.scrollTop = chatBox.scrollHeight;
+        while ((match = regex.exec(chunkText)) !== null) {
+            extractedText += match[1]; // Collect all extracted content
         }
+
+        if (extractedText) {
+            fullResponse += extractedText; // Append to full response
+            botMessage.textContent = fullResponse; // Update UI in real-time
+        }
+
+        chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll
+        }
+
+        loadingMessage.remove(); // Remove "Thinking..." message
     });
 });
