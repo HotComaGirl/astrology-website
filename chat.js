@@ -76,9 +76,9 @@ document.addEventListener("DOMContentLoaded", () => {
         chatBox.appendChild(botMessage);*/
 
         // Stream response
-        const reader = response.body.getReader();
-        const decoder = new TextDecoder();
-        let partialMessage = "";
+        //const reader = response.body.getReader();
+        //const decoder = new TextDecoder();
+        //let partialMessage = "";
         botMessage.textContent = "abcd";
         /*while (true) {
             const { done, value } = await reader.read();
