@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // API Call
         const response = await fetch("https://astrology-bot-worker.mahima-gandhi15.workers.dev/", {
             method: "POST",
-            headers: { "Authorization": 'Bearer ${userAPIKey}', "Content-Type": "text/event-stream" },
+            headers: { "Authorization": 'Bearer ${userAPIKey}', "Content-Type": "application/json" },
             body: JSON.stringify({
                 query: `1) Use astrology to answer my question with accuracy.  
                         
