@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // API Call
         const response = await fetch("https://astrology-bot-worker.mahima-gandhi15.workers.dev/", {
             method: "POST",
-            headers: { "Authorization": 'Bearer ${userAPIKey}', "Content-Type": "application/json" },
+            headers: { "Authorization": 'Bearer ${userAPIKey}', "Content-Type": "text/event-stream" },
             body: JSON.stringify({
                 query: `1) Use astrology to answer my question with accuracy.  
                         
@@ -79,6 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
         //const reader = response.body.getReader();
         //const decoder = new TextDecoder();
         //let partialMessage = "";
+        
         botMessage.textContent = "abcd";
         /*while (true) {
             const { done, value } = await reader.read();
