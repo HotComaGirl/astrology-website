@@ -11,12 +11,12 @@
     <button id="rzp-button1">Pay Now</button>
 
     <script>
-        fetch("https://your-worker-name.workers.dev/") // Call the Worker to get an order_id
+        fetch("https://payment.mahima-gandhi15.workers.dev/") // Call the Worker to get an order_id
             .then(res => res.json())
             .then(data => {
                 var options = {
-                    "key": "YOUR_RAZORPAY_KEY",
-                    "amount": 50000,
+                    "key": "rzp_test_dGisTPMYxZV4rk",
+                    "amount": 500,
                     "currency": "INR",
                     "name": "Your Website",
                     "description": "Premium Access",
