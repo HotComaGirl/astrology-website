@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+    <h2>Complete Your Payment</h2>
+    <button id="rzp-button1">Pay Now</button>
+
+    <script>
+        fetch("https://your-worker-name.workers.dev/") // Call the Worker to get an order_id
+            .then(res => res.json())
+            .then(data => {
+                var options = {
+                    "key": "YOUR_RAZORPAY_KEY",
+                    "amount": 50000,
+                    "currency": "INR",
+                    "name": "Your Website",
+                    "description": "Premium Access",
+                    "order_id": data.id, // Dynamic Order ID
+                    "handler": function (response) {
+                        fetch("/verify-payment", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ paymentId: response.razorpay_payment_id })
+                        })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.success) {
+                                window.location.href = data.redirect;
+                            } else {
+                                alert("Payment verification failed!");
+                            }
+                        });
+                    },
+                    "prefill": {
+                        "name": "Customer Name",
+                        "email": "customer@example.com",
+                        "contact": "9999999999"
+                    },
+                    "theme": {
+                        "color": "#3399cc"
+                    }
+                };
+
+                var rzp1 = new Razorpay(options);
+                document.getElementById('rzp-button1').onclick = function (e) {
+                    rzp1.open();
+                    e.preventDefault();
+                };
+            });
+    </script>
+</body>
+</html>
